@@ -34,4 +34,17 @@ func main() {
 	var value = 275.00
 	var taxes float32 = 27.50
 	fmt.Println(value * float64(taxes))
+
+	//Множественное присваивание через :=
+	aArg, bArg := 10, 30
+	fmt.Println(aArg, bArg)
+	aArg, bArg = 30, 40
+	fmt.Println(aArg, bArg)
+	// aArg, bArg := 10, 30
+	// fmt.Println(aArg, bArg)
+
+	//Исключение из этого правила
+	bArg, cArg := 300, 400
+	fmt.Println(aArg, bArg, cArg)
+
 }
