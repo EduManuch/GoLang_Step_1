@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	var n int
+	var n uint8
 	fmt.Scan(&n)
 
 	fmt.Println("Первая цифра", n / 100)
