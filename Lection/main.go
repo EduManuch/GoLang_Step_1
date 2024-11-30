@@ -6,6 +6,7 @@ func main() {
 	//Декларирование и инициализация пользовательским значением
 	var age int
 	fmt.Println("My age is:", age)
+
 	var height int = 183
 	fmt.Println("My height is:", height)
 
@@ -17,7 +18,7 @@ func main() {
 	// Константы
 	const price, tax float32 = 275.00, 27.50
 	const quantity, inStock = 2, true
-	fmt.Println("Total:", 2 * quantity* (price + tax))
+	fmt.Println("Total:", 2*quantity*(price+tax))
 
 	//Variables
 	var cost float32 = 275.00
@@ -35,16 +36,16 @@ func main() {
 	var taxes float32 = 27.50
 	fmt.Println(value * float64(taxes))
 
-	//Множественное присваивание через :=
-	aArg, bArg := 10, 30
-	fmt.Println(aArg, bArg)
-	aArg, bArg = 30, 40
-	fmt.Println(aArg, bArg)
-	// aArg, bArg := 10, 30
-	// fmt.Println(aArg, bArg)
+	// Короткое присваивание
+	result := false
+	value, new_value := 3.12, 121
+	fmt.Println("Result:", new_value, result)
 
-	//Исключение из этого правила
-	bArg, cArg := 300, 400
-	fmt.Println(aArg, bArg, cArg)
-
+	// Ввод данных
+	var (
+		number int
+		s      string
+	)
+	fmt.Scan(&number, &s)
+	fmt.Println(number, s)
 }
