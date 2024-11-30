@@ -24,4 +24,14 @@ func main() {
 	var total float32 = 27.50
 	cost = 300
 	fmt.Println(cost * total)
+
+	// // Error block
+	// var value = 275.00
+	// var taxes float32 = 27.50
+	// fmt.Println(value * taxes)
+
+	// OK block
+	var value = 275.00
+	var taxes float32 = 27.50
+	fmt.Println(value * float64(taxes))
 }
