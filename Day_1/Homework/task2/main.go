@@ -14,7 +14,7 @@ func main() {
 
 	var n, a, b, c uint16
 
-	fmt.Println("Enter your number: ")
+	fmt.Print("Enter your number: ")
 	fmt.Scan(&n)
 
 	if n < 100 || n > 999 {
