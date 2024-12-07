@@ -31,39 +31,65 @@ import "fmt"
 
 func main() {
 	var arr [5]int
+	var asc, desc, constant bool
 
 	fmt.Println("Enter 5 numbers:")
 	for i := range arr {
 		fmt.Scan(&arr[i])
 	}
 
-	switch {
-	case arr[0] == arr[1] &&
-		arr[1] == arr[2] &&
-		arr[2] == arr[3] &&
-		arr[3] == arr[4]:
-		fmt.Println("CONSTANT")
-	case arr[0] > arr[1] &&
-		arr[1] > arr[2] &&
-		arr[2] > arr[3] &&
-		arr[3] > arr[4]:
-		fmt.Println("DESCENDING")
-	case arr[0] < arr[1] &&
-		arr[1] < arr[2] &&
-		arr[2] < arr[3] &&
-		arr[3] < arr[4]:
-		fmt.Println("ASCENDING")
-	case (arr[0] > arr[1] || arr[0] == arr[1]) &&
-		(arr[1] > arr[2] || arr[1] == arr[2]) &&
-		(arr[2] > arr[3] || arr[2] == arr[3]) &&
-		(arr[3] > arr[4] || arr[3] == arr[4]):
-		fmt.Println("WEAKLY DESCENDING")
-	case (arr[0] < arr[1] || arr[0] == arr[1]) &&
-		(arr[1] < arr[2] || arr[1] == arr[2]) &&
-		(arr[2] < arr[3] || arr[2] == arr[3]) &&
-		(arr[3] < arr[4] || arr[3] == arr[4]):
-		fmt.Println("WEAKLY ASCENDING")
-	default:
-		fmt.Println("RANDOM")
+	for i := 0; i < 4; i++ {
+		if arr[i] < arr[i+1] {
+			asc = true
+		} else if arr[i] > arr[i+1] {
+			desc = true
+		} else {
+			constant = true
+		}
 	}
+
+	switch {
+	case asc && desc:
+		fmt.Println("RANDOM")
+	case asc && constant:
+		fmt.Println("WEAKLY ASCENDING")
+	case asc:
+		fmt.Println("ASCENDING")
+	case desc && constant:
+		fmt.Println("WEAKLY DESCENDING")
+	case desc:
+		fmt.Println("DESCENDING")
+	default:
+		fmt.Println("CONSTANT")
+	}
+
+	// switch {
+	// case arr[0] == arr[1] &&
+	// 	arr[1] == arr[2] &&
+	// 	arr[2] == arr[3] &&
+	// 	arr[3] == arr[4]:
+	// 	fmt.Println("CONSTANT")
+	// case arr[0] > arr[1] &&
+	// 	arr[1] > arr[2] &&
+	// 	arr[2] > arr[3] &&
+	// 	arr[3] > arr[4]:
+	// 	fmt.Println("DESCENDING")
+	// case arr[0] < arr[1] &&
+	// 	arr[1] < arr[2] &&
+	// 	arr[2] < arr[3] &&
+	// 	arr[3] < arr[4]:
+	// 	fmt.Println("ASCENDING")
+	// case (arr[0] > arr[1] || arr[0] == arr[1]) &&
+	// 	(arr[1] > arr[2] || arr[1] == arr[2]) &&
+	// 	(arr[2] > arr[3] || arr[2] == arr[3]) &&
+	// 	(arr[3] > arr[4] || arr[3] == arr[4]):
+	// 	fmt.Println("WEAKLY DESCENDING")
+	// case (arr[0] < arr[1] || arr[0] == arr[1]) &&
+	// 	(arr[1] < arr[2] || arr[1] == arr[2]) &&
+	// 	(arr[2] < arr[3] || arr[2] == arr[3]) &&
+	// 	(arr[3] < arr[4] || arr[3] == arr[4]):
+	// 	fmt.Println("WEAKLY ASCENDING")
+	// default:
+	// 	fmt.Println("RANDOM")
+	// }
 }
