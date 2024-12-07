@@ -48,13 +48,12 @@ func main() {
 			fmt.Println("Превышено количество попыток")
 			break
 		}
-		fmt.Printf("Попытка %v: ", try)
+		fmt.Printf("Попытка %v: \n", try)
 		try++
 
 		passed, err := checkPassword(input.Text())
-		if len(err) != 0 {
-			fmt.Println(err)
-			continue
+		for _, val := range err {
+			fmt.Println(val)
 		}
 		if passed {
 			fmt.Println("Пароль успешно создан")
@@ -63,9 +62,10 @@ func main() {
 	}
 }
 
-func checkPassword(pass string) (bool, string) {
+func checkPassword(pass string) (bool, []string) {
+	var err []string
 	if utf8.RuneCountInString(pass) < 8 || utf8.RuneCountInString(pass) > 15 {
-		return false, "Длина пароля должна быть от 8 до 15 символов"
+		err = append(err, "Длина пароля должна быть от 8 до 15 символов")
 	}
 
 	digits := strToMap("0123456789")
@@ -73,7 +73,6 @@ func checkPassword(pass string) (bool, string) {
 	uppercase := strToMap("ABCDEFGHIKLMNOPQRSTVXYZ")
 	special := strToMap("_!@#$%^&")
 	var digitsOk, lowerOk, upperOk, specialOk bool
-	var err string
 
 	for _, val := range pass {
 		s := string(val)
@@ -91,20 +90,22 @@ func checkPassword(pass string) (bool, string) {
 		}
 	}
 
-	switch {
-	case !digitsOk:
-		err = "Пароль должен содержать минимум одну цифру"
-	case !lowerOk:
-		err = "Пароль должен содержать минимум одну строчную букву"
-	case !upperOk:
-		err = "Пароль должен содержать минимум одну заглавную букву"
-	case !specialOk:
-		err = "Пароль должен содержать минимум один спецсимвол"
+	if !digitsOk {
+		err = append(err, "Пароль должен содержать минимум одну цифру")
+	}
+	if !lowerOk {
+		err = append(err, "Пароль должен содержать минимум одну строчную букву")
+	}
+	if !upperOk {
+		err = append(err, "Пароль должен содержать минимум одну заглавную букву")
+	}
+	if !specialOk {
+		err = append(err, "Пароль должен содержать минимум один спецсимвол")
 	}
 	if len(err) != 0 {
 		return false, err
 	}
-	return true, ""
+	return true, err
 }
 
 func strToMap(val string) map[string]int {
