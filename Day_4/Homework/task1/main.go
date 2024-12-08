@@ -57,7 +57,7 @@ func (i *Invoice) validateProduct() {
 }
 
 func (i *Invoice) validateQuantity() {
-	re := regexp.MustCompile(`^[1-9]+$`)
+	re := regexp.MustCompile(`^([1-9]|[1-9][0-9]+)$`)
 	for !re.MatchString(i.quantity) {
 		fmt.Println("Количество должно состоять из цифр. Повторите ввод:")
 		fmt.Scan(&i.quantity)
